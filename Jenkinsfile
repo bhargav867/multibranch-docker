@@ -9,21 +9,21 @@ pipeline {
         }
         stage ("Tag") {
             steps {
-                sh 'docker tag image3 msvbhargav99/paytm:movie'
+                sh 'docker tag image3 msvbhargav99/paytm:movie1'
             }
         }
         stage ("Push") {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub') {
-                        sh 'docker push msvbhargav99/paytm:movie'
+                        sh 'docker push msvbhargav99/paytm:movie1'
                     }
                 }
             }
         }
         stage ("Deploy") {
             steps {
-                sh 'docker run -itd --name movie-app -p 3333:80 msvbhargav99/paytm:movie'
+                sh 'docker run -itd --name movie-app -p 3333:80 msvbhargav99/paytm:movie1'
             }
         }
     }
